@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "mrQxutCo3EX29M0H7nlu2yUzqCaDaz9hjVSvMkADAE/Np4lH22XVqQlnkf2iSLOByEw21etJ17w5R9XvMCvtlg==",
+  "success": true,
+  "projectFilePath": "/Users/carlossepulveda/Projects/MatiTest/MatiTest/MatiTest.csproj",
+  "expectedPackageFiles": [
+    "/Users/carlossepulveda/.nuget/packages/restsharp/106.12.0/restsharp.106.12.0.nupkg.sha512"
+  ],
+  "logs": []
+}
