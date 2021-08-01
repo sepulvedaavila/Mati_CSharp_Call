@@ -12,14 +12,14 @@ namespace MatiTest
 
         public static async Task Main(string[] args)
         {
-            Upload();
+            Upload("61070739b36538001be1d8fa", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnQiOnsiX2lkIjoiNWUzMzU4MGVlNTFmY2MwMDFiOTBhNTQ2IiwibWVyY2hhbnQiOnsiX2lkIjoiNWUzMzU4MGVlNTFmY2MwMDFiOTBhNTQ1Iiwib3duZXIiOiI1ZTMzNTgwZWU1MWZjYzAwMWI5MGE1NDMiLCJibG9ja2VkQXQiOm51bGx9fSwidXNlciI6eyJfaWQiOiI1ZTMzNTgwZWU1MWZjYzAwMWI5MGE1NDMiLCJmaXJzdE5hbWUiOiJDYXJsb3MiLCJsYXN0TmFtZSI6IlNlcHVsdmVkYSJ9LCJzY29wZSI6InZlcmlmaWNhdGlvbl9mbG93IGlkZW50aXR5OnJlYWQgdmVyaWZpY2F0aW9uOnJlYWQiLCJpYXQ");
         }
 
-        private static void Upload()
+        private static void Upload(string identity, string token)
         {
             using (var client = new HttpClient())
             {
-                client.DefaultRequestHeaders.Add("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnQiOnsiX2lkIjoiNWUzMzU4MGVlNTFmY2MwMDFiOTBhNTQ2IiwibWVyY2hhbnQiOnsiX2lkIjoiNWUzMzU4MGVlNTFmY2MwMDFiOTBhNTQ1Iiwib3duZXIiOiI1ZTMzNTgwZWU1MWZjYzAwMWI5MGE1NDMiLCJibG9ja2VkQXQiOm51bGx9fSwidXNlciI6eyJfaWQiOiI1ZTMzNTgwZWU1MWZjYzAwMWI5MGE1NDMiLCJmaXJzdE5hbWUiOiJDYXJsb3MiLCJsYXN0TmFtZSI6IlNlcHVsdmVkYSJ9LCJzY29wZSI6InZlcmlmaWNhdGlvbl9mbG93IGlkZW50aXR5OnJlYWQgdmVyaWZpY2F0aW9uOnJlYWQiLCJpYXQiOjE2Mjc4NTAzODksImV4cCI6MTYyNzg1Mzk4OSwiaXNzIjoib2F1dGgyLXNlcnZlciJ9.QshW1pmX5NJhukdREteOTvcuNf6UeqIqDqxsf-mi4HU");
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer "+token);
 
                 using (var content = new MultipartFormDataContent())
                 {
@@ -50,7 +50,7 @@ namespace MatiTest
                     streamContent2.Headers.Add("Content-Disposition", "form-data; name=\"document\"; filename=\"" + Path.GetFileName(path2) + "\"");
                     content.Add(streamContent2, "document", Path.GetFileName(path2));
 
-                    Task<HttpResponseMessage> message = client.PostAsync("https://api.getmati.com/v2/identities/61070739b36538001be1d8fa/send-input", content);
+                    Task<HttpResponseMessage> message = client.PostAsync("https://api.getmati.com/v2/identities/"+identity+"/send-input", content);
 
                     var input = message.Result.Content.ReadAsStringAsync();
                     Console.WriteLine(input.Result);
